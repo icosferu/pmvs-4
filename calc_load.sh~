@@ -1,0 +1,16 @@
+#!/bin/sh
+
+sudo insmod ./calc.ko || exit
+
+rm -f /dev/first
+#rm -f /dev/second
+#rm -f /dev/operation
+#rm -f /dev/result
+mknod /dev/first c $(awk '$2=="first" {print $1}' /proc/devices) 0
+#mknod /dev/calc_second c $(awk '$2=="calc_second" {print $1}' /proc/devices) 0
+#mknod /dev/calc_operation c $(awk '$2=="calc_operation" {print $1}' /proc/devices) 0
+#mknod /dev/calc_result c $(awk '$2=="calc_result" {print $1}' /proc/devices) 0
+chmod 666 /dev/first
+#chmod 666 /dev/calc_second
+#chmod 666 /dev/calc_operation
+#chmod 444 /dev/calc_result
